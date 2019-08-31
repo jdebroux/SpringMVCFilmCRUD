@@ -9,6 +9,7 @@
 <title>FilmAdded</title>
 </head>
 <body>
+	<a href="index.html">Home</a>
 	<h2>Your Film Added</h2>
 	<c:choose>
 		<c:when test="${! empty filmAdd}">

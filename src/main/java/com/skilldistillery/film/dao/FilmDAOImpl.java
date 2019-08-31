@@ -172,7 +172,7 @@ public class FilmDAOImpl implements FilmDAO {
 			stmt.setString(1, film.getTitle());
 			stmt.setString(2, film.getDescription());
 			stmt.setInt(3, film.getReleaseYear());
-			stmt.setString(4, film.getLanguage());
+			stmt.setInt(4, film.getLanguageId());
 			stmt.setInt(5, film.getRentalDuration());
 			stmt.setDouble(6, film.getRentalRate());
 			stmt.setInt(7, film.getLength());
@@ -180,6 +180,7 @@ public class FilmDAOImpl implements FilmDAO {
 			stmt.setString(9, film.getRating());
 			stmt.setString(10, film.getSpecialFeatures());
 			int updateCount = stmt.executeUpdate();
+			System.out.println(stmt);
 			if (updateCount == 1) {
 				ResultSet keys = stmt.getGeneratedKeys();
 				if (keys.next()) {
@@ -194,6 +195,12 @@ public class FilmDAOImpl implements FilmDAO {
 							stmt.setInt(2, actor.getId());
 							updateCount = stmt.executeUpdate();
 						}
+					}
+					if(film.getCategoryId() != 0) {
+						sql = "INSERT INTO film_category (film_id, category_id) VALUES (?,?)";
+						stmt = conn.prepareStatement(sql);
+						stmt.setInt(1, newFilmId);
+						stmt.setInt(2, film.getCategoryId());
 					}
 				}
 			} else {

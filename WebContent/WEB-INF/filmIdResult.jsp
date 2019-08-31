@@ -8,6 +8,7 @@
 <title>IDResults</title>
 </head>
 <body>
+	<a href="index.html">Home</a>
 	<h2>Film ID Search Results</h2>
 	<c:choose>
 		<c:when test="${! empty filmById}">

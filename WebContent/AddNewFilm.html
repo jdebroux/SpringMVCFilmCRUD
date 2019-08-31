@@ -5,25 +5,58 @@
 <title>AddFilm</title>
 </head>
 <body>
+	<a href="index.html">Home</a>
 	<h3>Add a New Film</h3>
 	<form action="ADDFILM.do" method="POST">
 		Title: <input type="text" name="title" /> <br> 
 		Description: <input type="text" name="description" /> <br> 
 		Release Year: <input type="number" name="releaseYear" /> <br> 
-		Language: <input type="text" name="language"/>
-		<!-- Language: <input type="radio" name="language" value="1">English <input
-			type="radio" name="language" value="2">Italian <input
-			type="radio" name="language" value="3">Japanese <input
-			type="radio" name="language" value="4">Mandarin <input
-			type="radio" name="language" value="5">French <input
-			type="radio" name="language" value="6">German --> <br>
+		Category: <select name="categoryId">
+		<option value="1">Action</option>
+		<option value="2">Animation</option>
+		<option value="3">Children</option>
+		<option value="4">Classics</option>
+		<option value="5">Comedy</option>
+		<option value="6">Documentary</option>
+		<option value="7">Drama</option>
+		<option value="8">Family</option>
+		<option value="9">Foreign</option>
+		<option value="10">Games</option>
+		<option value="11">Horror</option>
+		<option value="12">Music</option>
+		<option value="13">New</option>
+		<option value="14">Sci-Fi</option>
+		<option value="15">Sports</option>
+		<option value="16">Travel</option>
+		</select>
+		<br>
+		Language: <select name="languageId">
+		<option value="1">English</option>
+		<option value="2">Italian</option>
+		<option value="3">Japanese</option>
+		<option value="4">Mandarin</option>
+		<option value="5">French</option>
+		<option value="6">German</option>
+		</select>
+		<br>
 		Rental Duration: <input type="number" name="rentalDuration" /> <br>
 		Rental Rate: <input type="number" name="rentalRate" /> <br>
 		Length: <input type="number" name="length" /> <br> Replacement
 		Cost: <input type="number" name="replacementCost" /> <br>
-		Rating: <input type="text" name="rating" /> <br> Special
-		Features: <input type="text" name="specialFeatures" /> <input
-			type="submit" name="Add New Film" />
+		Rating: <select name="rating">
+		<option value="G">G</option>
+		<option value="PG">PG</option>
+		<option value="PG13">PG-13</option>
+		<option value="R">R</option>
+		<option value="NC17">NC-17</option>
+		</select>
+		<br> 
+		Special Features: <br><input type="checkbox" name="specialFeatures" value="Trailers"> Trailers <br>
+		<input type="checkbox" name="specialFeatures" value="Commentaries"> Commentaries <br>
+		<input type="checkbox" name="specialFeatures" value="Deleted Scenes"> Deleted Scenes <br>
+		<input type="checkbox" name="specialFeatures" value="Behind the Scenes"> Behind the Scenes <br>
+		
+		<input type="submit" name="Add New Film" />
 	</form>
 </body>
 </html>

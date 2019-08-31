@@ -33,13 +33,11 @@ public class FilmController {
 	@RequestMapping(path = "getFilmsKeyword.do", params = "keyword", method = RequestMethod.GET)
 	public ModelAndView getFilmByKeyword(String keyword) {
 		ModelAndView mv = new ModelAndView();
-//		List<List<Actor>> listActor = new ArrayList<>();
 		List <Film> films = dao.findFilmsByKeyword(keyword);
-//		for (Film film : films) {
-//			List<Actor> actors = dao.findActorsByFilmId(film.getId());
-//			listActor.add(actors);
-//		}
-//		mv.addObject("listOfListActors", listActor);
+		for (Film film : films) {
+			List<Actor> actors = dao.findActorsByFilmId(film.getId());
+			film.setActors(actors);
+		}
 		mv.addObject("filmByKeyword", films);
 		mv.setViewName("WEB-INF/filmKeywordResult.jsp");
 		return mv;
