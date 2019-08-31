@@ -15,6 +15,11 @@
 			<ul>
 				<c:forEach var="film" items="${filmByKeyword}">
 					<li>${film}</li>
+					<c:forEach var="listActors" items="${listOfListActors}">
+						<c:forEach var="Actors" items="${listActors}">
+							<li>${Actors}</li>
+						</c:forEach>
+					</c:forEach>
 				</c:forEach>
 			</ul>
 		</c:when>

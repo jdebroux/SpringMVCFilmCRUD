@@ -11,8 +11,15 @@
 	<h2>Film ID Search Results</h2>
 	<c:choose>
 		<c:when test="${! empty filmById}">
+			<h3>Film Information:</h3>
 			<ul>
 				<li>${filmById}</li>
+			</ul>
+			<h3>Actors in Film:</h3>
+			<ul>
+				<c:forEach var="actor" items="${actorsByFilmId}">
+					<li>${actor}</li>
+				</c:forEach>
 			</ul>
 		</c:when>
 		<c:otherwise>

@@ -14,6 +14,9 @@ public class Film {
 	private String specialFeatures;
 	private String category;
 
+	public Film() {
+	}
+
 	public Film(int id, String title, String description, int releaseYear, String category, String language,
 			int rentalDuration, double rentalRate, int length, double replacementCost, String rating,
 			String specialFeatures) {
@@ -67,7 +70,7 @@ public class Film {
 		return language;
 	}
 
-	public void setLanguageId(String language) {
+	public void setLanguage(String language) {
 		this.language = language;
 	}
 
@@ -119,6 +122,14 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
 		String upperTS = "FILM ID: " + id + ", Title: " + title + ", Description: " + description + ", Release Year: "
@@ -130,8 +141,8 @@ public class Film {
 	}
 
 	public String userFriendlyToString() {
-		String upperUFTS = "Title: " + title + ", Release Year: " + releaseYear + ", Rating: " + rating
-				+ ", Language: " + language + ", Description: " + description;
+		String upperUFTS = "Title: " + title + ", Release Year: " + releaseYear + ", Rating: " + rating + ", Language: "
+				+ language + ", Description: " + description;
 		upperUFTS = upperUFTS.toUpperCase();
 		return upperUFTS;
 	}
