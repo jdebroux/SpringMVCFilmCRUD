@@ -16,11 +16,12 @@ import com.skilldistillery.film.entities.Film;
 public class FilmController {
 	@Autowired
 	FilmDAO dao;
-
+	
 	@RequestMapping(path = "getFilmsID.do", params = "id", method = RequestMethod.GET)
 	public ModelAndView getFilmByID(int id) {
 		ModelAndView mv = new ModelAndView();
 		Film film = dao.findFilmById(id);
+		System.err.println(film);
 		mv.addObject("filmById", film);
 		mv.setViewName("WEB-INF/filmIdResult.jsp");
 		return mv;
