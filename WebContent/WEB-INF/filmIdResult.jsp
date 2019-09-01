@@ -8,6 +8,7 @@
 <title>IDResults</title>
 </head>
 <body>
+	<a href="index.html">Home</a>
 	<h2>Film ID Search Results</h2>
 	<c:choose>
 		<c:when test="${! empty filmById}">
@@ -26,5 +27,10 @@
 			<p>No film found</p>
 		</c:otherwise>
 	</c:choose>
+	<form action="UPDATEFILM.do" method="GET">
+		<br>
+		<button type="submit">Update/Delete Film</button>
+		<input type="hidden" name="id" value="${filmById.id}" />
+	</form>
 </body>
 </html>

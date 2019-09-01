@@ -3,6 +3,7 @@ package com.skilldistillery.film.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Film {
 	private int id;
 	private String title;
@@ -12,10 +13,12 @@ public class Film {
 	private int rentalDuration;
 	private double rentalRate;
 	private int length;
-	private double replacementCost;
-	private String rating;
-	private String specialFeatures;
-	private String category;
+	private double replacementCost; 
+	private String rating; //finished
+	private String specialFeatures; //finished
+	private String category; //don't worry about
+	private int categoryId; //finished
+	private int languageId; //finished
 	private List<Actor> actors;
 
 	public Film() {
@@ -38,8 +41,39 @@ public class Film {
 		this.category = category;
 	}
 
-	
-	
+	public Film(int id, String title, String description, int releaseYear, int categoryId, int languageId,
+			int rentalDuration, double rentalRate, int length, double replacementCost, String rating,
+			String specialFeatures) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.languageId = languageId;
+		this.rentalDuration = rentalDuration;
+		this.rentalRate = rentalRate;
+		this.length = length;
+		this.replacementCost = replacementCost;
+		this.rating = rating;
+		this.specialFeatures = specialFeatures;
+		this.categoryId = categoryId;
+	}
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public int getLanguageId() {
+		return languageId;
+	}
+
+	public void setLanguageId(int languageId) {
+		this.languageId = languageId;
+	}
+
 	public List<Actor> getActors() {
 		List<Actor> newList = new ArrayList<>(actors);
 		return newList;

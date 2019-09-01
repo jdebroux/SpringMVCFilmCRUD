@@ -9,7 +9,8 @@
 <title>FilmAdded</title>
 </head>
 <body>
-	<h2>Your Film Added</h2>
+	<a href="index.html">Home</a>
+	<h2>Your Film</h2>
 	<c:choose>
 		<c:when test="${! empty filmAdd}">
 			<ul>
@@ -17,7 +18,7 @@
 			</ul>
 		</c:when>
 		<c:otherwise>
-			<p>Film Not Added</p>
+			<p>Not Added</p>
 		</c:otherwise>
 	</c:choose>
 </body>

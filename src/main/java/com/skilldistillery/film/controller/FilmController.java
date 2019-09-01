@@ -24,22 +24,22 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		Film film = dao.findFilmById(id);
 		System.out.println(film);
-		List<Actor> actors = dao.findActorsByFilmId(film.getId());
+		if (film != null) {
+			List<Actor> actors = dao.findActorsByFilmId(film.getId());
+			mv.addObject("actorsByFilmId", actors);
+		}
 		mv.addObject("filmById", film);
-		mv.addObject("actorsByFilmId", actors);
 		mv.setViewName("WEB-INF/filmIdResult.jsp");
 		return mv;
 	}
 	@RequestMapping(path = "getFilmsKeyword.do", params = "keyword", method = RequestMethod.GET)
 	public ModelAndView getFilmByKeyword(String keyword) {
 		ModelAndView mv = new ModelAndView();
-//		List<List<Actor>> listActor = new ArrayList<>();
 		List <Film> films = dao.findFilmsByKeyword(keyword);
-//		for (Film film : films) {
-//			List<Actor> actors = dao.findActorsByFilmId(film.getId());
-//			listActor.add(actors);
-//		}
-//		mv.addObject("listOfListActors", listActor);
+		for (Film film : films) {
+			List<Actor> actors = dao.findActorsByFilmId(film.getId());
+			film.setActors(actors);
+		}
 		mv.addObject("filmByKeyword", films);
 		mv.setViewName("WEB-INF/filmKeywordResult.jsp");
 		return mv;
@@ -55,6 +55,30 @@ public class FilmController {
 	public ModelAndView filmAdded() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/FilmAdded.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(path = "editedFilm.do", method = RequestMethod.POST)
+	public String updateFilm(Film film, RedirectAttributes redir) {
+		System.out.println(film);
+		System.out.println(dao.saveFilm(film)); //TODO figure out why it gets stuck on this line.
+		redir.addFlashAttribute("filmAdd", film);
+		return "redirect:filmEditAdded.do";
+	}
+	
+	@RequestMapping(path = "filmEditAdded.do", method = RequestMethod.GET)
+	public ModelAndView filmEditAdded() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("WEB-INF/FilmAdded.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(path = "UPDATEFILM.do", method = RequestMethod.GET)
+	public ModelAndView filmUpdated(Film film) {
+		ModelAndView mv = new ModelAndView();
+		film = dao.findFilmById(film.getId());
+		mv.addObject("film", film);
+		mv.setViewName("WEB-INF/CRUD.jsp");
 		return mv;
 	}
 }

@@ -8,18 +8,25 @@
 <title>KeywordResults</title>
 </head>
 <body>
+	<a href="index.html">Home</a>
 	<h2>Keyword Search Results</h2>
 	<br>
 	<c:choose>
 		<c:when test="${! empty filmByKeyword}">
 			<ul>
 				<c:forEach var="film" items="${filmByKeyword}">
+					<h3>Film Details:</h3>
 					<li>${film}</li>
-					<c:forEach var="listActors" items="${listOfListActors}">
-						<c:forEach var="Actors" items="${listActors}">
-							<li>${Actors}</li>
-						</c:forEach>
+					<h4>Actors in Film:</h4>
+					<c:forEach var="actor" items="${film.actors}">
+						<li>"${actor}"</li>
 					</c:forEach>
+					<br>
+					<form action="UPDATEFILM.do" method="GET">
+						<br>
+						<button type="submit">Update/Delete Film</button>
+						<input type="hidden" name="id" value="${film.id}" />
+					</form>
 				</c:forEach>
 			</ul>
 		</c:when>
