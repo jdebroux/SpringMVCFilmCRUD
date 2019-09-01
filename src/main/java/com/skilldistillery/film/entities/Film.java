@@ -3,6 +3,7 @@ package com.skilldistillery.film.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Film {
 	private int id;
 	private String title;
@@ -12,12 +13,12 @@ public class Film {
 	private int rentalDuration;
 	private double rentalRate;
 	private int length;
-	private double replacementCost;
-	private String rating;
-	private String specialFeatures;
-	private String category;
-	private int categoryId;
-	private int languageId;
+	private double replacementCost; 
+	private String rating; //finished
+	private String specialFeatures; //finished
+	private String category; //don't worry about
+	private int categoryId; //finished
+	private int languageId; //finished
 	private List<Actor> actors;
 
 	public Film() {

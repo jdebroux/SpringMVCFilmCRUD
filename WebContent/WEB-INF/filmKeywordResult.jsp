@@ -22,6 +22,11 @@
 						<li>"${actor}"</li>
 					</c:forEach>
 					<br>
+					<form action="UPDATEFILM.do" method="GET">
+						<br>
+						<button type="submit">Update/Delete Film</button>
+						<input type="hidden" name="id" value="${film.id}" />
+					</form>
 				</c:forEach>
 			</ul>
 		</c:when>

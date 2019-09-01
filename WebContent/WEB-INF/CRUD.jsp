@@ -1,16 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>AddFilm</title>
+<title>UpdateFilm</title>
 </head>
 <body>
 	<a href="index.html">Home</a>
-	<h3>Add a New Film</h3>
-	<form action="ADDFILM.do" method="POST">
-		Title: <input type="text" name="title" /> <br> 
-		Description: <input type="text" name="description" /> <br> 
-		Release Year: <input type="number" name="releaseYear" /> <br> 
+	<h3>Update Film</h3>
+	<form:form action="editedFilm.do" method="PUT" modelAttribute="film">
+	<input type="hidden" name="id" value="${film.id}" />
+		Title: <input type="text" name="title" value="${film.title}"/> <br> 
+		Description: <input type="text" name="description" value="${film.description}"/> <br> 
+		Release Year: <input type="number" name="releaseYear" value="${film.releaseYear}"/> <br> 
 		Category: <select name="categoryId">
 		<option value="1">Action</option>
 		<option value="2">Animation</option>
@@ -39,10 +44,10 @@
 		<option value="6">German</option>
 		</select>
 		<br>
-		Rental Duration: <input type="number" name="rentalDuration" /> <br>
-		Rental Rate: <input type="text" name="rentalRate" /> <br>
-		Length: <input type="number" name="length" /> <br> 
-		Replacement Cost: <input type="text" name="replacementCost" /> <br>
+		Rental Duration: <input type="number" name="rentalDuration" value="${film.rentalDuration}"/> <br>
+		Rental Rate: <input type="text" name="rentalRate" value="${film.rentalRate}"/> <br>
+		Length: <input type="number" name="length" value="${film.length}"/> <br> 
+		Replacement Cost: <input type="text" name="replacementCost" value="${film.replacementCost}"/> <br>
 		Rating: <select name="rating">
 		<option value="G">G</option>
 		<option value="PG">PG</option>
@@ -57,6 +62,6 @@
 		<input type="checkbox" name="specialFeatures" value="Behind the Scenes"> Behind the Scenes <br>
 		
 		<input type="submit" name="Add New Film" />
-	</form>
+	</form:form>
 </body>
 </html>
