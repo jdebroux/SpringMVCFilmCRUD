@@ -3,6 +3,10 @@
 ## WEEK 8 TEAM HOMEWORK PROJECT FOR SKILL DISTILLERY
 
 ## OVERVIEW
+  The students were assigned to teams and directed to create an application that implemented CRUD functionality using Spring MVC and DAO patterns.  The DAO implementation was to use JDBC to send and receive data from the database.
+
+  The application allows the user to view, edit, delete, and search by keywords, films that are stored on a database.
+
 
 Welcome to MVC Film CRUD.
 
