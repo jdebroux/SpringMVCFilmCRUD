@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -21,5 +22,15 @@
 			<p>Not Added</p>
 		</c:otherwise>
 	</c:choose>
+	<form action="UPDATEFILM.do" method="GET">
+		<br>
+		<button type="submit">Update Film</button>
+		<input type="hidden" name="id" value="${filmAdd.id}" />
+	</form>
+	<form:form action="deleteFilm.do" method="POST" modelAttribute="film">
+		<input type="hidden" name="id" value="${filmAdd.id}" />
+		<input type="submit" name="Delete this Film"
+			value="Delete from Inventory" />
+	</form:form>
 </body>
 </html>

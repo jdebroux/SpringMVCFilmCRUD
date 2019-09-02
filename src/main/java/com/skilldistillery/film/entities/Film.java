@@ -56,6 +56,74 @@ public class Film {
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
 		this.categoryId = categoryId;
+		//could not get comparing ints to work on JSP page, so this is how we had to do it to get it to auto populate language on CRUD.jsp.
+		if(languageId == 1) {
+			language = "English";
+		}
+		if(languageId == 2) {
+			language = "Italian";
+		}
+		if(languageId == 3) {
+			language = "Japanese";
+		}
+		if(languageId == 4) {
+			language = "Mandarin";
+		}
+		if(languageId == 5) {
+			language = "French";
+		}
+		if(languageId == 6) {
+			language = "German";
+		}
+		//could not get comparing ints to work on JSP page, so this is how we had to do it to get it to auto populate category on CRUD.jsp
+		if(categoryId == 1) {
+			category = "Action";
+		}
+		if(categoryId == 2) {
+			category = "Animation";
+		}
+		if(categoryId == 3) {
+			category = "Children";
+		}
+		if(categoryId == 4) {
+			category = "Classics";
+		}
+		if(categoryId == 5) {
+			category = "Comedy";
+		}
+		if(categoryId == 6) {
+			category = "Documentary";
+		}
+		if(categoryId == 7) {
+			category = "Drama";
+		}
+		if(categoryId == 8) {
+			category = "Family";
+		}
+		if(categoryId == 9) {
+			category = "Foreign";
+		}
+		if(categoryId == 10) {
+			category = "Games";
+		}
+		if(categoryId == 11) {
+			category = "Horror";
+		}
+		if(categoryId == 12) {
+			category = "Music";
+		}
+		if(categoryId == 13) {
+			category = "New";
+		}
+		if(categoryId == 14) {
+			category = "Sci-Fi";
+		}
+		if(categoryId == 15) {
+			category = "Sports";
+		}
+		if(categoryId == 16) {
+			category = "Travel";
+		}
 	}
 
 	public int getCategoryId() {
@@ -75,7 +143,10 @@ public class Film {
 	}
 
 	public List<Actor> getActors() {
-		List<Actor> newList = new ArrayList<>(actors);
+		List<Actor> newList = null;
+		if (actors != null && actors.size() > 0){
+			newList = new ArrayList<>(actors);
+		}
 		return newList;
 	}
 

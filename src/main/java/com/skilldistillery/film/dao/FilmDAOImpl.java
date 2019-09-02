@@ -180,7 +180,6 @@ public class FilmDAOImpl implements FilmDAO {
 			stmt.setString(9, film.getRating());
 			stmt.setString(10, film.getSpecialFeatures());
 			int updateCount = stmt.executeUpdate();
-			System.out.println(stmt);
 			if (updateCount == 1) {
 				ResultSet keys = stmt.getGeneratedKeys();
 				if (keys.next()) {
@@ -225,7 +224,6 @@ public class FilmDAOImpl implements FilmDAO {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(film);
 		return film;
 	}
 
@@ -256,14 +254,16 @@ public class FilmDAOImpl implements FilmDAO {
 				stmt = conn.prepareStatement(sql);
 				stmt.setInt(1, film.getId());
 				updateCount = stmt.executeUpdate();
-				sql = "INSERT INTO film_actor (film_id, actor_id) VALUES (?,?)";
-				stmt = conn.prepareStatement(sql);
-				if (film.getActors() != null) {
+				if (film.getActors() != null && film.getActors().size() > 0) {
+					sql = "INSERT INTO film_actor (film_id, actor_id) VALUES (?,?)";
+					stmt = conn.prepareStatement(sql);
+//					if (film.getActors() != null) {
 					for (Actor actor : film.getActors()) {
 						stmt.setInt(1, film.getId());
 						stmt.setInt(2, actor.getId());
 						updateCount = stmt.executeUpdate();
 					}
+//					}
 				}
 				sql = "DELETE FROM film_category WHERE film_id = ?";
 				stmt = conn.prepareStatement(sql);
@@ -282,6 +282,44 @@ public class FilmDAOImpl implements FilmDAO {
 					conn.rollback();
 				} // ROLLBACK TRANSACTION ON ERROR
 				catch (SQLException sqle2) {
+					System.err.println("Error trying to rollback");
+				}
+			}
+			return false;
+		} finally {
+			try {
+				conn.commit();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return true;
+	}
+
+	public boolean deleteFilm(Film film) {
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection(URL, USER, PASS);
+			conn.setAutoCommit(false); // START TRANSACTION
+			String sql = "DELETE FROM film_actor WHERE film_id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, film.getId());
+			int updateCount = stmt.executeUpdate();
+			sql = "DELETE FROM film_category WHERE film_id = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, film.getId());
+			updateCount = stmt.executeUpdate();
+			sql = "DELETE FROM film WHERE id = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, film.getId());
+			updateCount = stmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+			if (conn != null) {
+				try {
+					conn.rollback();
+				} catch (SQLException sqle2) {
 					System.err.println("Error trying to rollback");
 				}
 			}

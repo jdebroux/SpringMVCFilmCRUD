@@ -18,12 +18,12 @@ import com.skilldistillery.film.entities.Film;
 public class FilmController {
 	@Autowired
 	FilmDAO dao;
-	
+	private String[] allRatings = {"G", "PG", "PG13", "R", "NC17"};
+
 	@RequestMapping(path = "getFilmsID.do", params = "id", method = RequestMethod.GET)
 	public ModelAndView getFilmByID(int id) {
 		ModelAndView mv = new ModelAndView();
 		Film film = dao.findFilmById(id);
-		System.out.println(film);
 		if (film != null) {
 			List<Actor> actors = dao.findActorsByFilmId(film.getId());
 			mv.addObject("actorsByFilmId", actors);
@@ -60,8 +60,7 @@ public class FilmController {
 	
 	@RequestMapping(path = "editedFilm.do", method = RequestMethod.POST)
 	public String updateFilm(Film film, RedirectAttributes redir) {
-		System.out.println(film);
-		System.out.println(dao.saveFilm(film)); //TODO figure out why it gets stuck on this line.
+		dao.saveFilm(film);
 		redir.addFlashAttribute("filmAdd", film);
 		return "redirect:filmEditAdded.do";
 	}
@@ -77,8 +76,23 @@ public class FilmController {
 	public ModelAndView filmUpdated(Film film) {
 		ModelAndView mv = new ModelAndView();
 		film = dao.findFilmById(film.getId());
+		mv.addObject("allRatings", allRatings);
 		mv.addObject("film", film);
 		mv.setViewName("WEB-INF/CRUD.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST)
+	public String deleteFilm(Film film, RedirectAttributes redir) {
+		dao.deleteFilm(film);
+		redir.addFlashAttribute("filmDelete", film);
+		return "redirect:filmDeleteAdded.do";
+	}
+	
+	@RequestMapping(path = "filmDeleteAdded.do", method = RequestMethod.GET)
+	public ModelAndView filmDeleteAdded() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("WEB-INF/FilmDeleted.jsp");
 		return mv;
 	}
 }
